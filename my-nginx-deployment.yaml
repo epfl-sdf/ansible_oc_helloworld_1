@@ -14,7 +14,7 @@ spec:
                   ports:
                       - containerPort: 8080
                         protocol: "TCP"
-    replicas: 5
+    replicas: 1
     selector:
         name: "my-nginx-app"
     triggers:

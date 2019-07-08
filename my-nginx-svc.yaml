@@ -6,6 +6,6 @@ spec:
     selctor:
         my-nginx-app: default
     ports:
-    - port: 5000
+    - port: 80
       protocol: TCP
-      targetPort: 5000
+      targetPort: 80
