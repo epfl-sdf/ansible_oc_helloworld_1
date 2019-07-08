@@ -1,10 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: my-nginx-svc
+    name: my-nginx-app
+    labels:
+      run: my-nginx-app
+    namespace: myproject
 spec:
-    selctor:
-        my-nginx-app: default
+    selector:
+        run: my-nginx-app
     ports:
     - port: 80
       protocol: TCP

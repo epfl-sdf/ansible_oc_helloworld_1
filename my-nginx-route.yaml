@@ -6,7 +6,6 @@ spec:
     host: my-nginx-app-myproject.192.168.99.100.nip.io
     port:
         targetPort: 80
-    path: "/"
     to:
         kind: Service
-        name: my-nginx-svc
+        name: my-nginx-app
