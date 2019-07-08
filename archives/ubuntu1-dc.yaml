@@ -1,0 +1,74 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  creationTimestamp: 2019-07-08T08:56:32Z
+  generation: 2
+  labels:
+    run: ubuntu1
+  name: ubuntu1
+  namespace: myproject
+  resourceVersion: "12413"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/myproject/deploymentconfigs/ubuntu1
+  uid: 48a9ac60-a15e-11e9-9dc6-0800275529cf
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    run: ubuntu1
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: ubuntu1
+    spec:
+      containers:
+      - image: ubuntu
+        imagePullPolicy: Always
+        name: ubuntu1
+        resources: {}
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: 2019-07-08T08:56:38Z
+    lastUpdateTime: 2019-07-08T08:56:38Z
+    message: Deployment config has minimum availability.
+    status: "True"
+    type: Available
+  - lastTransitionTime: 2019-07-08T09:28:39Z
+    lastUpdateTime: 2019-07-08T09:28:42Z
+    message: replication controller "ubuntu1-2" successfully rolled out
+    reason: NewReplicationControllerAvailable
+    status: "True"
+    type: Progressing
+  details:
+    causes:
+    - type: Manual
+    message: manual change
+  latestVersion: 2
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1
