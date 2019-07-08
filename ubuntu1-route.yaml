@@ -1,0 +1,31 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  creationTimestamp: 2019-07-08T09:49:46Z
+  labels:
+    run: ubuntu1
+  name: ubuntu1
+  namespace: myproject
+  resourceVersion: "17510"
+  selfLink: /apis/route.openshift.io/v1/namespaces/myproject/routes/ubuntu1
+  uid: b82299d9-a165-11e9-9dc6-0800275529cf
+spec:
+  host: ubuntu1-myproject.192.168.99.100.nip.io
+  port:
+    targetPort: 80
+  to:
+    kind: Service
+    name: ubuntu1
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - lastTransitionTime: 2019-07-08T09:49:46Z
+      status: "True"
+      type: Admitted
+    host: ubuntu1-myproject.192.168.99.100.nip.io
+    routerName: router
+    wildcardPolicy: None
