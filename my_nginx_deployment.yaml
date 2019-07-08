@@ -1,0 +1,21 @@
+kind: "DeploymentConfig"
+apiVersion: "v1"
+metadata:
+    name: "my-nginx-app"
+spec:
+    template:
+        metadata:
+            labels:
+                name: "my-nginx-app"
+        spec:
+            containers:
+                - name: "helloworld"
+                  image: "nginx"
+                  ports:
+                      - containerPort: 8080
+                        protocol: "TCP"
+    replicas: 5
+    selector:
+        name: "my-nginx-app"
+    triggers:
+        - type: "ConfigChange"

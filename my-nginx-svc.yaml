@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: my-nginx-svc
+spec:
+    selctor:
+        my-nginx-app: default
+    ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
