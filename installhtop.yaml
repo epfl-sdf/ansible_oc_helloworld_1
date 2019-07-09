@@ -1,0 +1,10 @@
+---
+- name: ping remotes
+  hosts: all
+  gather_facts: true
+  become: yes
+  become_method: su
+  become_user: root
+  tasks:
+    - name: check for htop package
+      action: apt name=htop state=present update_cache=yes
