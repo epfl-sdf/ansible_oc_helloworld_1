@@ -1,0 +1,7 @@
+---
+# tasks file for roles
+  - name: install htop
+    hosts: cyr
+    apt:
+      name: htop
+      update_cache: yes

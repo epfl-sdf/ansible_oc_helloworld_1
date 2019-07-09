@@ -1,0 +1,12 @@
+[cyr]
+toto1 ansible_ssh_port=2221 ansible_ssh_host=128.179.178.87 ansible_become_pass=tototutu ansible_user=ubuntu ansible_connection=ssh
+toto2 ansible_ssh_port=2222 ansible_ssh_host=128.179.178.87 ansible_become_pass=tototutu ansible_user=ubuntu ansible_connection=ssh
+toto3 ansible_ssh_port=2223 ansible_ssh_host=128.179.178.87 ansible_become_pass=tototutu ansible_user=ubuntu ansible_connection=ssh
+toto4 ansible_ssh_port=2224 ansible_ssh_host=128.179.178.87 ansible_become_pass=tototutu ansible_user=ubuntu ansible_connection=ssh
+
+
+[bat]
+bat.xub1.t1 ansible_ssh_port=2221 ansible_ssh_host=128.179.146.8 ansible_become_pass=tototutu ansible_user=ubuntu ansible_connection=ssh
+bat.xub1.t2 ansible_ssh_port=2222 ansible_ssh_host=128.179.146.8 ansible_become_pass=tototutu ansible_user=ubuntu ansible_connection=ssh
+bat.xub1.t3 ansible_ssh_port=2223 ansible_ssh_host=128.179.146.8 ansible_become_pass=tototutu ansible_user=ubuntu ansible_connection=ssh
+

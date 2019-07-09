@@ -1,0 +1,10 @@
+---
+
+  - name: install htop
+    become: yes
+    become_method: su
+    become_user: root
+    hosts: all
+    roles:
+      - role: ~/ansiblegalaxyhtop/roles/common/
+        name: install htop
