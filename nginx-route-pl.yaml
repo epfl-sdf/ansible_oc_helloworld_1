@@ -1,0 +1,27 @@
+---
+- hosts: all
+  roles:
+         # Loads library/openshift.py to make it available to other plays;
+         # does nothing else by itself
+         - { role: epfl_idevelop.ansible_module_openshift }
+
+- hosts: all
+  tasks:
+    - name: "Route"
+      openshift:
+        state: latest
+        kind: Route
+        name: "nginx-route"
+        namespace: "myproject"
+        content: |
+            apiVersion: v1
+            kind: Route
+            metadata:
+                name: my-nginx-app
+            spec:
+                host: my-nginx-app-myproject.192.168.99.100.nip.io
+                port:
+                    targetPort: 80
+                to:
+                    kind: Service
+                    name: my-nginx-app

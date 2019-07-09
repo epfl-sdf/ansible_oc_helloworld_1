@@ -1,0 +1,40 @@
+---
+- hosts: all
+  roles:
+         # Loads library/openshift.py to make it available to other plays;
+         # does nothing else by itself
+         - { role: epfl_idevelop.ansible_module_openshift }
+
+- hosts: all
+  tasks:
+    - name: "deployment config"
+      openshift:
+        state: latest
+        kind: DeploymentConfig
+        name: "nginx-dep1"
+        namespace: "my-project"
+        content: |
+            kind: "DeploymentConfig"
+            apiVersion: "v1"
+            metadata:
+                name: my-nginx-app
+                labels:
+                    run: my-nginx-app
+                namespace: myproject
+            spec:
+                template:
+                    metadata:
+                        labels:
+                            run: my-nginx-app
+                    spec:
+                        containers:
+                            - name: helloworld
+                              image: nginx
+                              ports:
+                                - containerPort: 80
+                                  protocol: "TCP"
+                replicas: 1
+                selector:
+                    run: my-nginx-app
+                triggers:
+                    - type: "ConfigChange"

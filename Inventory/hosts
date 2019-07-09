@@ -1,0 +1,2 @@
+[ocmaster]
+192.168.1.21:2022 ansible_user=bat ansible_pass=tototutu
