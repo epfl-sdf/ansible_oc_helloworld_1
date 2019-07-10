@@ -1,14 +1,14 @@
-- hosts: all
+- hosts: localhost
   roles:
          # Loads library/openshift.py to make it available to other plays;
          # does nothing else by itself
          - { role: epfl_idevelop.ansible_module_openshift }
 
-- hosts: all
+- hosts: localhost
   tasks:
     - name: "Route"
       openshift:
-        state: absent
+        state: latest
         kind: Route
         name: "nginx-route"
         namespace: "myproject"
@@ -27,7 +27,7 @@
 
     - name: "deployment config"
       openshift:
-        state: absent
+        state: latest
         kind: DeploymentConfig
         name: "nginx-dep1"
         namespace: "my-project"
@@ -59,7 +59,7 @@
 
     - name: "Service"
       openshift:
-        state: absent
+        state: latest
         kind: Service
         name: "nginx-svc"
         namespace: "my-project"
@@ -77,4 +77,4 @@
                 ports:
                 - port: 80
                   protocol: TCP
-                  targetPort: 8080
+                  targetPort: 80

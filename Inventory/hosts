@@ -1,2 +1,2 @@
 [ocmaster]
-128.179.146.8:2022 ansible_user=bat
+localhost
