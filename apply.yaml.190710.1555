@@ -8,6 +8,25 @@
   vars:
     replicas: 1
   tasks:
+    - name: "Route"
+      openshift:
+        state: "{{state}}"
+        kind: Route
+        name: "nginx-route"
+        namespace: "myproject"
+        content: |
+            apiVersion: v1
+            kind: Route
+            metadata:
+                name: "{{depl_name}}"
+            spec:
+                host: "{{depl_name}}-myproject.192.168.99.100.nip.io"
+                port:
+                    targetPort: 80
+                to:
+                    kind: Service
+                    name: "{{depl_name}}"
+
     - name: "deployment config"
       openshift:
         state: "{{state}}"
@@ -61,22 +80,3 @@
                 - port: 80
                   protocol: TCP
                   targetPort: 80
-
-    - name: "Route"
-      openshift:
-        state: "{{state}}"
-        kind: Route
-        name: "nginx-route"
-        namespace: "myproject"
-        content: |
-            apiVersion: v1
-            kind: Route
-            metadata:
-                name: "{{depl_name}}"
-            spec:
-                host: "{{depl_name}}-myproject.192.168.99.100.nip.io"
-                port:
-                    targetPort: 80
-                to:
-                    kind: Service
-                    name: "{{depl_name}}"
