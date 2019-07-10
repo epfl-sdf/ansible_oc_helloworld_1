@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ansible-playbook --connection=local -e "$1 $2 $3" apply.yaml
+ansible-playbook -t all -e "$1 $2 $3" main.yaml --connection=local

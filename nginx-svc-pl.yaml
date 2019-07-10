@@ -9,7 +9,7 @@
   tasks:
     - name: "Service"
       openshift:
-        state: latest
+        state: "{{state}}"
         kind: Service
         name: "nginx-svc"
         namespace: "my-project"
@@ -17,13 +17,13 @@
             apiVersion: v1
             kind: Service
             metadata:
-                name: my-nginx-app
+                name: {{dpl_name}}
                 labels:
-                   run: my-nginx-app
+                   run: {{dpl_name}}
                 namespace: myproject
             spec:
                 selector:
-                   run: my-nginx-app
+                   run: {{dpl_name}}
                 ports:
                 - port: 80
                   protocol: TCP

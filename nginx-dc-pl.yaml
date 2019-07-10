@@ -6,10 +6,12 @@
          - { role: epfl_idevelop.ansible_module_openshift }
 
 - hosts: localhost
+  vars:
+    replicas: 1
   tasks:
     - name: "deployment config"
       openshift:
-        state: latest
+        state: "{{state}}"
         kind: DeploymentConfig
         name: "nginx-dep1"
         namespace: "myproject"
@@ -17,15 +19,15 @@
             kind: "DeploymentConfig"
             apiVersion: "v1"
             metadata:
-                name: my-nginx-app
+                name: {{dpl_name}}
                 labels:
-                    run: my-nginx-app
+                    run: {{dpl_name}}
                 namespace: myproject
             spec:
                 template:
                     metadata:
                         labels:
-                            run: my-nginx-app
+                            run: {{dpl_name}}
                     spec:
                         containers:
                             - name: helloworld
@@ -33,8 +35,8 @@
                               ports:
                                 - containerPort: 80
                                   protocol: "TCP"
-                replicas: 1
+                replicas: {{replicas}}
                 selector:
-                    run: my-nginx-app
+                    run: {{dpl_name}}
                 triggers:
                     - type: "ConfigChange"
