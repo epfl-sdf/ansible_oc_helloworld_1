@@ -12,7 +12,7 @@
         state: latest
         kind: DeploymentConfig
         name: "nginx-dep1"
-        namespace: "my-project"
+        namespace: "myproject"
         content: |
             kind: "DeploymentConfig"
             apiVersion: "v1"

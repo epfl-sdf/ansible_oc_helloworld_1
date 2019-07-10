@@ -8,7 +8,7 @@
   tasks:
     - name: "Route"
       openshift:
-        state: latest
+        state: absent
         kind: Route
         name: "nginx-route"
         namespace: "myproject"
@@ -27,7 +27,7 @@
 
     - name: "deployment config"
       openshift:
-        state: latest
+        state: absent
         kind: DeploymentConfig
         name: "nginx-dep1"
         namespace: "my-project"
@@ -59,7 +59,7 @@
 
     - name: "Service"
       openshift:
-        state: latest
+        state: absent
         kind: Service
         name: "nginx-svc"
         namespace: "my-project"
