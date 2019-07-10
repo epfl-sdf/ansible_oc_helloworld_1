@@ -5,7 +5,8 @@
          - { role: epfl_idevelop.ansible_module_openshift }
 
 - hosts: localhost
-  
+  vars:
+    replicas: 1
   tasks:
     - name: "Route"
       openshift:
