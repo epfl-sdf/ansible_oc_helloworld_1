@@ -1,0 +1,19 @@
+- name: Nginx deployment
+  import_playbook: "nginx-dc-pl.yaml"
+  tags: 
+    - deploy
+    - all
+
+- name: Nginx service
+  import_playbook: "nginx-svc-pl.yaml"
+  tags: 
+    - service
+    - all
+
+- name: Nginx route
+  import_playbook: "nginx-route-pl.yaml"
+  tags: 
+    - route
+    - all
+
+
