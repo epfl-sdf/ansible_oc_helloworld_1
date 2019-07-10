@@ -5,10 +5,11 @@
          - { role: epfl_idevelop.ansible_module_openshift }
 
 - hosts: localhost
+  
   tasks:
     - name: "Route"
       openshift:
-        state: latest
+        state: "{{state}}"
         kind: Route
         name: "nginx-route"
         namespace: "myproject"
@@ -16,34 +17,34 @@
             apiVersion: v1
             kind: Route
             metadata:
-                name: my-nginx-app
+                name: "{{depl_name}}"
             spec:
-                host: my-nginx-app-myproject.192.168.99.100.nip.io
+                host: "{{depl_name}}-myproject.192.168.99.100.nip.io"
                 port:
                     targetPort: 80
                 to:
                     kind: Service
-                    name: my-nginx-app
+                    name: "{{depl_name}}"
 
     - name: "deployment config"
       openshift:
-        state: latest
+        state: "{{state}}"
         kind: DeploymentConfig
         name: "nginx-dep1"
-        namespace: "my-project"
+        namespace: "myproject"
         content: |
             kind: "DeploymentConfig"
             apiVersion: "v1"
             metadata:
-                name: my-nginx-app
+                name: "{{depl_name}}"
                 labels:
-                    run: my-nginx-app
+                    run: "{{depl_name}}"
                 namespace: myproject
             spec:
                 template:
                     metadata:
                         labels:
-                            run: my-nginx-app
+                            run: "{{depl_name}}"
                     spec:
                         containers:
                             - name: helloworld
@@ -51,29 +52,29 @@
                               ports:
                                 - containerPort: 80
                                   protocol: "TCP"
-                replicas: 1
+                replicas: "{{replicas}}"
                 selector:
-                    run: my-nginx-app
+                    run: "{{depl_name}}"
                 triggers:
                     - type: "ConfigChange"
 
     - name: "Service"
       openshift:
-        state: latest
+        state: "{{state}}"
         kind: Service
         name: "nginx-svc"
-        namespace: "my-project"
+        namespace: "myproject"
         content: |
             apiVersion: v1
             kind: Service
             metadata:
-                name: my-nginx-app
+                name: "{{depl_name}}"
                 labels:
-                   run: my-nginx-app
+                   run: "{{depl_name}}"
                 namespace: myproject
             spec:
                 selector:
-                   run: my-nginx-app
+                   run: "{{depl_name}}"
                 ports:
                 - port: 80
                   protocol: TCP
