@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #petit script pour démarrer le binz
-#190710.1449
+#190710.1531
 
 echo -e "
 
@@ -19,4 +19,4 @@ Delete
 read -p "Appuyer une touche pour démarrer..."
 
 #echo $0 $1 $2 $3
-ansible-playbook --connection=local -e "$1 $2 $3" apply.yaml
+ansible-playbook --connection=local -e "$1 $2 $3" $4 apply.yaml
