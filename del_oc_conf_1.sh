@@ -3,5 +3,5 @@
 # zf1908.1630
 
 oc delete route my-nginx-app
-oc delete svc my-nginx-svc
+oc delete svc my-nginx-app
 oc delete dc my-nginx-app
