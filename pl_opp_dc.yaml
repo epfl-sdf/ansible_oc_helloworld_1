@@ -1,0 +1,54 @@
+---
+- hosts: localhost
+  roles:
+         # Loads library/openshift.py to make it available to other plays;
+         # does nothing else by itself
+         - { role: epfl_idevelop.ansible_module_openshift }
+
+- hosts: localhost
+  vars:
+    replicas: 1
+    dbip: 128.179.146.8
+    dbname: db1
+    appname: opp-app
+  tasks:
+    - name: "deployment config"
+      openshift:
+        state: "{{state}}"
+        kind: DeploymentConfig
+        name: "{{appname}}"
+        namespace: "myproject"
+        content: |
+            apiVersion: apps.openshift.io/v1
+            kind: DeploymentConfig
+            metadata:  
+              labels:
+                run: {{appname}}
+              name: {{appname}}
+              namespace: myproject
+              
+            spec:
+              replicas: {{replicas}}
+              revisionHistoryLimit: 10
+              selector:
+                run: {{appname}}
+              template:
+                metadata:
+                  labels:
+                    run: {{appname}}
+                spec:
+                  containers:
+                    - env:
+                        - name: DATABASE_URL
+                          value: 'mysql2://root:root!@{{dbip}}:3306/{{dbname}}'
+                      image: 'openproject/community:9'
+                      name: {{appname}}
+                      volumeMounts:
+                        - mountPath: /usr/share/ops
+                          name: nfsvol-2
+                  volumes:
+                    - name: nfsvol-2
+                      persistentVolumeClaim:
+                        claimName: nfs-pvc
+              triggers:
+                - type: ConfigChange

@@ -7,3 +7,11 @@ Deployment files for openproject on openshift using 128.179.146.8 as nfs and mys
  mysql on port 3306
  see git@github.com:epfl-sdf/tests_infra_persitent.git for mysql installation
  doc on nfs installation coming soon)
+
+run pv_init first to create volumes with admin privileges
+then run ans.sh: Usage:
+
+  ./ans.sh  state=latest appname=name replicas=1 dbip=128.179.146.8 dbname=db1
+            ^ required   ^optional    ^optional  ^optional          ^optional
+
+

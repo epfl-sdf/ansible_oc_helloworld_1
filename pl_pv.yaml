@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  roles:
+         # Loads library/openshift.py to make it available to other plays;
+         # does nothing else by itself
+         - { role: epfl_idevelop.ansible_module_openshift }
+
+- hosts: localhost
+  tasks:
+    - name: "PersistentVolume"
+      openshift:
+        as_admin: true
+        state: latest
+        kind: PersistentVolume
+        name: "nfs-pv-bat"
+        namespace: "my-project"
+        content: |
+            apiVersion: v1
+            kind: PersistentVolume
+            metadata:
+              name: nfs-pv-bat
+              labels:
+                  id: bat
+            spec:
+              capacity:
+                storage: 1Gi 
+              accessModes:
+                - ReadWriteMany 
+              persistentVolumeReclaimPolicy: Retain 
+              nfs: 
+                path: /op
+                server: 128.179.146.8
+                readOnly: false

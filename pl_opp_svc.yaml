@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  roles:
+         # Loads library/openshift.py to make it available to other plays;
+         # does nothing else by itself
+         - { role: epfl_idevelop.ansible_module_openshift }
+
+- hosts: localhost
+  vars:
+    appname: opp-app
+  tasks:
+    - name: "Service"
+      openshift:
+        state: "{{state}}"
+        kind: Service
+        name: "{{appname}}"
+        namespace: "my-project"
+        content: |
+            apiVersion: v1
+            kind: Service
+            metadata:
+                name: {{appname}}
+                labels:
+                  run: {{appname}}
+                namespace: myproject
+            spec:
+                selector:
+                    run: {{appname}}
+                ports:
+                - port: 80
+                  protocol: TCP
+                  targetPort: 80
