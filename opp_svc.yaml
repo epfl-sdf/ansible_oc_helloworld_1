@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: my-nginx-app
+    name: opp-app
     labels:
-      run: my-nginx-app
+      run: opp-app
     namespace: myproject
 spec:
     selector:
-        run: my-nginx-app
+        run: opp-app
     ports:
     - port: 80
       protocol: TCP
