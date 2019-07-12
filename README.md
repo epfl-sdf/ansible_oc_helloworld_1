@@ -2,7 +2,7 @@
 Petit Hello Wolrd pour déployer sur OpenShift via Ansible un petit serveur web nginx
 
 
-ansible-playbook -t all -e "replicas=2 dpl_name=toto state=latest" main.yaml --connection=local
+ansible-playbook -t all -e "replicas=1 dpl_name=toto state=latest" main.yaml --connection=local
 
 or
 
