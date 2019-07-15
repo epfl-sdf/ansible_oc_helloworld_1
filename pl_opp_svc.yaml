@@ -14,7 +14,7 @@
         state: "{{state}}"
         kind: Service
         name: "{{appname}}"
-        namespace: "my-project"
+        namespace: "myproject"
         content: |
             apiVersion: v1
             kind: Service

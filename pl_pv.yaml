@@ -10,10 +10,10 @@
     - name: "PersistentVolume"
       openshift:
         as_admin: true
-        state: latest
+        state: "{{state}}"
         kind: PersistentVolume
         name: "nfs-pv-bat"
-        namespace: "my-project"
+        namespace: "myproject"
         content: |
             apiVersion: v1
             kind: PersistentVolume

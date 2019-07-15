@@ -9,10 +9,11 @@
   tasks:
     - name: "PersistentVolumeClaim"
       openshift:
-        state: latest
+        as_admin: true
+        state: "{{state}}"
         kind: PersistentVolumeClaim
         name: "nfs-pvc"
-        namespace: "my-project"
+        namespace: "myproject"
         content: |
             apiVersion: v1
             kind: PersistentVolumeClaim
