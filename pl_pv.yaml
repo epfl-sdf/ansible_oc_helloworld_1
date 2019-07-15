@@ -29,5 +29,5 @@
               persistentVolumeReclaimPolicy: Retain 
               nfs: 
                 path: /op
-                server: 128.179.146.8
+                server: 128.179.178.87
                 readOnly: false

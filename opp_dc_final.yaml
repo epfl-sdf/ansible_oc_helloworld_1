@@ -21,11 +21,11 @@ spec:
       containers:
         - env:
             - name: DATABASE_URL
-              value: 'mysql2://root:root!@128.179.146.8:3306/db1'
+              value: 'mysql2://root:root!@128.179.178.87:3306/db1'
           image: 'openproject/community:9'
           name: op-pod
           volumeMounts:
-            - mountPath: /usr/share/ops
+            - mountPath: /nfsshare
               name: nfsvol-2
       volumes:
         - name: nfsvol-2
