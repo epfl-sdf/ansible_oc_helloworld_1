@@ -1,3 +1,16 @@
+- name: pv
+  import_playbook: "pl_pv.yaml"
+  when: state == 'latest' or state == 'present'
+  tags: 
+    - pv
+    - all
+- name: pvc
+  import_playbook: "pl_pvc.yaml"
+  when: state == 'latest' or state == 'present'
+  tags: 
+    - pvc
+    - all
+
 - name: OpenProject deployment
   import_playbook: "pl_opp_dc.yaml"
   tags: 
@@ -14,4 +27,17 @@
   import_playbook: "pl_opp_rt.yaml"
   tags: 
     - route
+    - all
+
+- name: pvc
+  import_playbook: "pl_pvc.yaml"
+  when: state == 'absent'
+  tags: 
+    - pvc
+    - all
+- name: pv
+  import_playbook: "pl_pv.yaml"
+  when: state == 'absent'
+  tags: 
+    - pv
     - all
