@@ -7,25 +7,25 @@
 
 - hosts: localhost
   vars:
-    appname: opp-app
+    app_name: opp-app
   tasks:
     - name: "Service"
       openshift:
         state: "{{state}}"
         kind: Service
-        name: "{{appname}}"
+        name: "{{app_name}}"
         namespace: "myproject"
         content: |
             apiVersion: v1
             kind: Service
             metadata:
-                name: {{appname}}
+                name: {{app_name}}
                 labels:
-                  run: {{appname}}
+                  run: {{app_name}}
                 namespace: myproject
             spec:
                 selector:
-                    run: {{appname}}
+                    run: {{app_name}}
                 ports:
                 - port: 80
                   protocol: TCP

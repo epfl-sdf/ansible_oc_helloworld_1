@@ -7,7 +7,7 @@
 
 - hosts: localhost
   vars:
-    dbip: 128.179.146.8
+    nfs_ip: 128.179.146.8
   tasks:
     - name: "PersistentVolume"
       openshift:
@@ -31,5 +31,5 @@
               persistentVolumeReclaimPolicy: Retain 
               nfs: 
                 path: /
-                server: {{dbip}}
+                server: {{nfs_ip}}
                 readOnly: false

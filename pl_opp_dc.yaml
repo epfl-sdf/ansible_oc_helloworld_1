@@ -8,41 +8,41 @@
 - hosts: localhost
   vars:
     replicas: 1
-    dbip: 128.179.146.8
-    dbname: db1
-    appname: opp-app
+    db_ip: 128.179.146.8
+    db_name: db1
+    app_name: opp-app
   tasks:
     - name: "deployment config"
       openshift:
         state: "{{state}}"
         kind: DeploymentConfig
-        name: "{{appname}}"
+        name: "{{app_name}}"
         namespace: "myproject"
         content: |
             apiVersion: apps.openshift.io/v1
             kind: DeploymentConfig
             metadata:  
               labels:
-                run: {{appname}}
-              name: {{appname}}
+                run: {{app_name}}
+              name: {{app_name}}
               namespace: myproject
               
             spec:
               replicas: {{replicas}}
               revisionHistoryLimit: 10
               selector:
-                run: {{appname}}
+                run: {{app_name}}
               template:
                 metadata:
                   labels:
-                    run: {{appname}}
+                    run: {{app_name}}
                 spec:
                   containers:
                     - env:
                         - name: DATABASE_URL
-                          value: 'mysql2://root:root!@{{dbip}}:3306/{{dbname}}'
+                          value: 'mysql2://root:root!@{{db_ip}}:3306/{{db_name}}'
                       image: 'openproject/community:9'
-                      name: {{appname}}
+                      name: {{app_name}}
                       volumeMounts:
                         - mountPath: /usr/share/ops
                           name: nfsvol-2
