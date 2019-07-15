@@ -6,14 +6,16 @@
          - { role: epfl_idevelop.ansible_module_openshift }
 
 - hosts: localhost
+  vars:
+    dbip: 128.179.146.8
   tasks:
     - name: "PersistentVolume"
       openshift:
         as_admin: true
-        state: latest
+        state: "{{state}}"
         kind: PersistentVolume
         name: "nfs-pv-bat"
-        namespace: "my-project"
+        namespace: "myproject"
         content: |
             apiVersion: v1
             kind: PersistentVolume
@@ -28,6 +30,6 @@
                 - ReadWriteMany 
               persistentVolumeReclaimPolicy: Retain 
               nfs: 
-                path: /op
-                server: 128.179.178.87
+                path: /
+                server: {{dbip}}
                 readOnly: false
