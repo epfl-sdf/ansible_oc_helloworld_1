@@ -15,18 +15,21 @@
   import_playbook: "pl_opp_dc.yaml"
   tags: 
     - deploy
+    - no-flag
     - all
 
 - name: OpenProject service
   import_playbook: "pl_opp_svc.yaml"
   tags: 
     - service
+    - no-flag
     - all
 
 - name: OpenProject route
   import_playbook: "pl_opp_rt.yaml"
   tags: 
     - route
+    - no-flag
     - all
 
 - name: pvc
