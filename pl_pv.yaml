@@ -7,7 +7,7 @@
 
 - hosts: localhost
   vars:
-    dbip: 128.179.146.8
+    nfs_ip: 128.179.146.8
   tasks:
     - name: "PersistentVolume"
       openshift:
@@ -25,11 +25,11 @@
                   id: bat
             spec:
               capacity:
-                storage: 1Gi 
+                storage: 1Gi
               accessModes:
-                - ReadWriteMany 
-              persistentVolumeReclaimPolicy: Retain 
-              nfs: 
+                - ReadWriteMany
+              persistentVolumeReclaimPolicy: Retain
+              nfs:
                 path: /
                 server: {{dbip}}
                 readOnly: false

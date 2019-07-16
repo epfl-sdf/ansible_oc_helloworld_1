@@ -16,33 +16,33 @@
       openshift:
         state: "{{state}}"
         kind: DeploymentConfig
-        name: "{{appname}}"
+        name: "{{app_name}}"
         namespace: "myproject"
         content: |
             apiVersion: apps.openshift.io/v1
             kind: DeploymentConfig
-            metadata:  
+            metadata:
               labels:
-                run: {{appname}}
-              name: {{appname}}
+                run: {{app_name}}
+              name: {{app_name}}
               namespace: myproject
-              
+
             spec:
               replicas: {{replicas}}
               revisionHistoryLimit: 10
               selector:
-                run: {{appname}}
+                run: {{app_name}}
               template:
                 metadata:
                   labels:
-                    run: {{appname}}
+                    run: {{app_name}}
                 spec:
                   containers:
                     - env:
                         - name: DATABASE_URL
-                          value: 'mysql2://root:root!@{{dbip}}:3306/{{dbname}}'
+                          value: 'mysql2://root:root!@{{db_ip}}:3306/{{db_name}}'
                       image: 'openproject/community:9'
-                      name: {{appname}}
+                      name: {{app_name}}
                       volumeMounts:
                         - mountPath: /usr/share/ops
                           name: nfsvol-2

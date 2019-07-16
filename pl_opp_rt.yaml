@@ -7,23 +7,23 @@
 
 - hosts: localhost
   vars:
-    appname: opp-app
+    app_name: opp-app
   tasks:
     - name: "Route"
       openshift:
         state: "{{state}}"
         kind: Route
-        name: "{{appname}}"
+        name: "{{app_name}}"
         namespace: "myproject"
         content: |
             apiVersion: v1
             kind: Route
             metadata:
-                name: {{appname}}
+                name: {{app_name}}
             spec:
-                host: {{appname}}-myproject.192.168.99.100.nip.io
+                host: {{app_name}}-myproject.192.168.99.100.nip.io
                 port:
                     targetPort: 80
                 to:
                     kind: Service
-                    name: {{appname}}
+                    name: {{app_name}}
