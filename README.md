@@ -1,4 +1,4 @@
-# ansible_oc_helloworld_1
+# ansible_openproject
 
 Deployment files for openproject on openshift using nfs and mysql servers.
 
