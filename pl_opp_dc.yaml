@@ -18,7 +18,6 @@
             run: "{{app_name}}"
           name: "{{app_name}}"
           namespace: myproject
-
         spec:
           replicas: "{{replicas}}"
           revisionHistoryLimit: 10

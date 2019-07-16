@@ -13,7 +13,7 @@
         metadata:
             name: "{{app_name}}"
         spec:
-            host: "{{app_name}}"-myproject.192.168.99.100.nip.io
+            host: "{{app_name}}-myproject.192.168.99.100.nip.io"
             port:
                 targetPort: 80
             to:

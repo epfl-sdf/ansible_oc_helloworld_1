@@ -11,7 +11,7 @@ spec:
     - ReadWriteMany 
   persistentVolumeReclaimPolicy: Retain 
   nfs: 
-    path: /nfsshare
+    path: /
     server: 128.179.178.87
     readOnly: false
 
