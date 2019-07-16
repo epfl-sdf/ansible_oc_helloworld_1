@@ -1,11 +1,5 @@
 #!/bin/bash
 
 
-oc apply --as system:admin -f persistent_volume.yaml 
+oc apply -f persistent_volume.yaml --as system:admin
 oc apply -f test-pvc.yaml
-
-
-
-
-
-

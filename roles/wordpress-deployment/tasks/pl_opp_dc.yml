@@ -24,9 +24,15 @@
         spec:
           containers:
             - env:
-                - name: DATABASE_URL
-                  value: "mysql2://root:root!@{{db_ip}}:3306/{{db_name}}"
-              image: 'openproject/community:9'
+                - name: WORDPRESS_DB_NAME
+                  value: db1
+                - name: WORDPRESS_DB_USER
+                  value: root
+                - name: WORDPRESS_DB_PASSWORD
+                  value: root!
+                - name: WORDPRESS_DB_HOST
+                  value: 128.179.178.87
+              image: 'wordpress:latest'
               name: "{{app_name}}"
               volumeMounts:
                 - mountPath: /usr/share/ops

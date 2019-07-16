@@ -1,8 +1,5 @@
 #!/bin/bash
 
-oc delete dc opp-app
-oc delete svc opp-app
-oc delete routes opp-app
-
-
-
+oc delete dc wwp-app
+oc delete svc wwp-app
+oc delete routes wwp-app
