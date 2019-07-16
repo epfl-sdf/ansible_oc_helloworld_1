@@ -1,11 +1,5 @@
 ---
 - hosts: localhost
-  roles:
-         # Loads library/openshift.py to make it available to other plays;
-         # does nothing else by itself
-         - { role: epfl_idevelop.ansible_module_openshift }
-
-- hosts: localhost
   tasks:
     - name: "PersistentVolumeClaim"
       openshift:
@@ -14,17 +8,15 @@
         kind: PersistentVolumeClaim
         name: "nfs-pvc"
         namespace: "myproject"
-        content: |
-            apiVersion: v1
-            kind: PersistentVolumeClaim
-            metadata:
-              name: nfs-pvc  
-            spec:
-              accessModes:
-              - ReadWriteMany      
-              resources:
-                 requests:
-                   storage: 1Gi
-              selector:
-                  matchLabels:
-                      id: bat
+        apiVersion: v1
+        metadata:
+          name: nfs-pvc
+        spec:
+          accessModes:
+          - ReadWriteMany
+          resources:
+             requests:
+               storage: 1Gi
+          selector:
+              matchLabels:
+                  id: bat
