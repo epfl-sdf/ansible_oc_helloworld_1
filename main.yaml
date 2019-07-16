@@ -1,0 +1,47 @@
+- hosts: localhost
+  roles:
+         # Loads library/openshift.py to make it available to other plays;
+         # does nothing else by itself
+         - { role: epfl_idevelop.ansible_module_openshift }
+
+- name: pv
+  import_playbook: "pl_pv.yaml"
+  when: state == 'latest' or state == 'present'
+  tags:
+    - pv
+
+- name: pvc
+  import_playbook: "pl_pvc.yaml"
+  when: state == 'latest' or state == 'present'
+  tags:
+    - pvc
+
+- name: OpenProject deployment
+  import_playbook: "pl_opp_dc.yaml"
+  tags:
+    - deploy
+    - no-flag
+
+- name: OpenProject service
+  import_playbook: "pl_opp_svc.yaml"
+  tags:
+    - service
+    - no-flag
+
+- name: OpenProject route
+  import_playbook: "pl_opp_rt.yaml"
+  tags:
+    - route
+    - no-flag
+
+- name: pvc
+  import_playbook: "pl_pvc.yaml"
+  when: state == 'absent'
+  tags:
+    - pvc
+
+- name: pv
+  import_playbook: "pl_pv.yaml"
+  when: state == 'absent'
+  tags:
+    - pv
