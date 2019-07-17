@@ -31,7 +31,7 @@
                 - name: WORDPRESS_DB_PASSWORD
                   value: root!
                 - name: WORDPRESS_DB_HOST
-                  value: 128.179.178.87
+                  value: "{{db_ip}}"
               image: 'wordpress:latest'
               name: "{{app_name}}"
               volumeMounts:
