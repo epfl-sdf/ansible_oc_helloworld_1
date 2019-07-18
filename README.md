@@ -11,7 +11,13 @@ Deployment files for openproject on openshift using 128.179.146.8 as nfs and mys
 run pv_init first to create volumes with admin privileges
 then run ans.sh: Usage:
 
-  ./ans.sh  state=latest appname=name replicas=1 dbip=128.179.146.8 dbname=db1
+./ans.sh  state=latest appname=name replicas=1 dbip=128.179.146.8 dbname=db1
             ^ required   ^optional    ^optional  ^optional          ^optional
 
+
+./ans.sh  state=latest appname=opp-app replicas=1 dbip=128.179.146.8 dbname=db1
+./ans.sh  state=absent appname=opp-app
+
+
+zf190718.1030
 
